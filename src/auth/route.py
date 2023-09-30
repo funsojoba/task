@@ -9,3 +9,10 @@ def register():
     from src.auth.controller import signup
 
     return signup()
+
+
+@auth_bp.route("/login", methods=["POST"])
+def login():
+    from src.auth.controller import login
+
+    return login()

@@ -44,4 +44,22 @@ def signup():
 
 
 def login():
-    pass
+    data = request.get_json()
+
+    user_schema = UserSchema()
+    try:
+        # Deserialize and validate the incoming data against the schema
+        user_data = user_schema.load(data)
+    except ValidationError as e:
+        return api_response(400, message="Validation error", errors=e.messages)
+
+    # query db for user
+    user = User.query.filter_by(username=user_data["username"]).first()
+    if not user:
+        return api_response(404, message="User not found")
+
+    if check_password_hash(user.password, user_data["password"]):
+        # generates the JWT Token
+        access_token = create_access_token(identity=user_data["username"])
+
+    return api_response(200, message="login successful", data=dict(token=access_token))
