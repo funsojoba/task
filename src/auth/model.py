@@ -1,3 +1,4 @@
+# from src.db import db
 from src.db import db
 
 
@@ -11,4 +12,4 @@ class User(db.Model):
         self.password = password
 
     def __repr__(self):
-        return self.username
+        return f"<User {self.username}>"

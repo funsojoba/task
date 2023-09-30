@@ -11,16 +11,14 @@ if [ -z ${HTTP_WORKERS} ]; then
 export HTTP_WORKERS=2
 fi
 
-# wait for postgres
-# echo "Waiting for postgres..."
-# while ! nc -z db 5432; do
-#   sleep 0.1
-# done
 
 export FLASK_APP=src.app:app
-# echo "Initializing DB..."
-# flask db upgrade
-# flask create-dummy-users
+echo "Initializing DB..."
+
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+
 status=$?
 if [ $status -eq 0 ]; then
   echo "$(tput setaf 1)initiating flask app . . .$(tput sgr0)"
