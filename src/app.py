@@ -8,6 +8,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 
 from src.auth.route import auth_bp
+from src.tasks.route import task_bp
 from src.helpers.response import api_response
 
 
@@ -30,6 +31,7 @@ migrate = Migrate(app, db)
 
 # Routes
 app.register_blueprint(auth_bp, url_prefix="/auth")
+app.register_blueprint(task_bp, url_prefix="/tasks")
 
 
 @app.route("/")
