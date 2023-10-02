@@ -1,11 +1,16 @@
 from marshmallow import Schema, fields
 from marshmallow_enum import EnumField
-from .model import Task, Priority, Category
+from .model import Task, Priority, Category, Status
 
 
 class PriorityEnumField(EnumField):
     def __init__(self, enum, *args, **kwargs):
         super(PriorityEnumField, self).__init__(enum, by_value=True, *args, **kwargs)
+
+
+class StatusEnumField(EnumField):
+    def __init__(self, enum, *args, **kwargs):
+        super(StatusEnumField, self).__init__(enum, by_value=True, *args, **kwargs)
 
 
 class CategorySchema(Schema):
@@ -20,7 +25,7 @@ class TaskSchema(Schema):
     category = fields.Nested(CategorySchema)
     priority = PriorityEnumField(Priority, required=True)
     expiry_date = fields.Date(required=True)
-    status = fields.String(required=True)
+    status = StatusEnumField(Status, required=True)
     created_at = fields.DateTime(dump_only=True)
 
 

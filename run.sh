@@ -19,6 +19,8 @@ flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
 
+
+
 status=$?
 if [ $status -eq 0 ]; then
   echo "$(tput setaf 1)initiating flask app . . .$(tput sgr0)"

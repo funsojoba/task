@@ -17,8 +17,8 @@ def list_tasks():
 
 
 @task_bp.route("/<int:id>", methods=["GET"])
-def retrieve_task():
-    return get_task()
+def retrieve_task(id):
+    return get_task(id)
 
 
 @task_bp.route("/", methods=["POST"])
