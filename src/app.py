@@ -34,6 +34,13 @@ app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(task_bp, url_prefix="/tasks")
 
 
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    user_id = jwt_data["sub"]
+    user = User.query.get(user_id)
+    return user
+
+
 @app.route("/")
 def index():
     return api_response(200, message="Welcome to my API")

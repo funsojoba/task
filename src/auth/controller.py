@@ -1,20 +1,13 @@
 from flask import request, Blueprint
+from flask_jwt_extended import create_access_token
+
 from marshmallow.exceptions import ValidationError
-
-
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from src.db import db
 from src.auth.model import User
 from src.auth.schema import UserSchema
 from src.helpers.response import api_response
-
-from src.db import db
-
-from flask_jwt_extended import (
-    create_access_token,
-    JWTManager,
-    jwt_required,
-)
 
 
 def signup():
@@ -22,15 +15,12 @@ def signup():
 
     user_schema = UserSchema()
     try:
-        # Deserialize and validate the incoming data against the schema
         user_data = user_schema.load(data)
     except ValidationError as e:
         return api_response(400, message="Validation error", errors=e.messages)
 
-    # query db for existing username
     users_with_username = User.query.filter_by(username=user_data["username"]).all()
 
-    # if username already exists, return error
     if users_with_username:
         return api_response(409, message="Username already exists")
 
@@ -48,18 +38,17 @@ def login():
 
     user_schema = UserSchema()
     try:
-        # Deserialize and validate the incoming data against the schema
         user_data = user_schema.load(data)
     except ValidationError as e:
         return api_response(400, message="Validation error", errors=e.messages)
 
-    # query db for user
     user = User.query.filter_by(username=user_data["username"]).first()
     if not user:
         return api_response(404, message="User not found")
 
     if check_password_hash(user.password, user_data["password"]):
-        # generates the JWT Token
-        access_token = create_access_token(identity=user_data["username"])
+        access_token = create_access_token(identity=user.id)
+    else:
+        return api_response(401, message="Invalid credentials")
 
     return api_response(200, message="login successful", data=dict(token=access_token))

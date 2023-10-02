@@ -6,9 +6,12 @@ from src.helpers.response import api_response
 from src.tasks.model import Task, Priority, Status
 from src.tasks.schema import task_schema, category_schema, tasks_schema
 
+from flask_jwt_extended import jwt_required, current_user
 
+
+@jwt_required()
 def get_tasks():
-    tasks = Task.query.all()
+    tasks = Task.query.filter_by(owner=current_user).all()
     serialized_tasks = tasks_schema.dump(tasks)
     return api_response(
         200,
@@ -17,8 +20,10 @@ def get_tasks():
     )
 
 
+@jwt_required()
 def get_task(id):
-    task = Task.query.get(id)
+
+    task = Task.query.filter_by(owner=current_user, id=id).first()
 
     if not task:
         return api_response(404, message="Task not found")
@@ -28,6 +33,7 @@ def get_task(id):
     )
 
 
+@jwt_required()
 def create_task():
     data = request.json
     try:
@@ -35,14 +41,15 @@ def create_task():
     except ValidationError as e:
         return api_response(400, message="Validation error", errors=e.messages)
 
-    new_task = Task(**task_schema.load(data))
+    new_task = Task(owner=current_user, **task_schema.load(data))
     db.session.add(new_task)
     db.session.commit()
     return api_response(201, message="Task created successfully")
 
 
+@jwt_required()
 def update_task(id):
-    task = Task.query.get(id)
+    task = Task.query.filter_by(owner=current_user, id=id).first()
 
     if not task:
         return api_response(404, message="Task not found")
@@ -70,8 +77,9 @@ def update_task(id):
     return api_response(200, message="Task updated successfully")
 
 
+@jwt_required()
 def delete_task(id):
-    task = Task.query.get(id)
+    task = Task.query.filter_by(owner=current_user, id=id).first()
     if not task:
         return api_response(404, message="Task not found")
     db.session.delete(task)

@@ -1,5 +1,7 @@
 from src.db import db
 from enum import Enum as EnumBase
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Priority(EnumBase):
@@ -27,10 +29,13 @@ class Task(db.Model):
     priority = db.Column(db.Enum(Priority), nullable=False, default=Priority.LOW)
     expiry_date = db.Column(db.Date, nullable=False)
     status = db.Column(db.Enum(Status), nullable=False, default=Status.TODO)
+
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    owner = relationship("User", backref="tasks")
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     def __init__(
-        self, title, description, priority, expiry_date, status, category=None
+        self, title, owner, description, priority, expiry_date, status, category=None
     ):
         self.title = title
         self.description = description
@@ -39,6 +44,7 @@ class Task(db.Model):
         self.expiry_date = expiry_date
         self.status = status
         self.created_at = db.func.now()
+        self.owner = owner
 
     def __repr__(self):
         return f"<Task {self.title}>"
