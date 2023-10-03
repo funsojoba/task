@@ -1,23 +1,22 @@
-import { useState } from "react";
-import {Button } from "../../components/Button/index";
 import { NavBar } from "../../components/NavBar";
 import { H1Tag } from "../../components/H1";
 import { PTag } from "../../components/Paragraph";
-import { SectionOne, SectionOneText, SectionOneImg, ImageDiv, Img, Quote } from "./style";
+import { SectionOne, SectionOneText, SectionOneImg, ImageDiv, Img, Quote, DezOne, DezTwo } from "./style";
 
 import { Link } from "react-router-dom";
 import { NavLink } from "../../components/NavBar/style";
 
-import { Dashboard } from "../dashboard/dashboard";
-
-
 export const Home = () => {
-    const [logInBar, setLoginBar] = useState(false)
-
     return <div>
-
         <NavBar></NavBar>
         <SectionOne>
+          <DezTwo>
+            <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/gxf9h0alldl1djrypmlw.svg" alt="" />
+          </DezTwo>
+          <DezTwo>
+            <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/aunqdteq1txtuo0pvyl5.svg" alt="" />
+          </DezTwo>
+
             <SectionOneText>
                 <H1Tag text={"Simplify Your Productivity ✌️"}/>
                 <PTag text="Keep track of your tasks, projects and team in one place. Focus on what matters without losing visibility or context."/>

@@ -68,7 +68,7 @@ export const CardStyle = styled.div`
     width: 250px;
     text-align: left;
     margin: 5px;
-
+    position: relative;
     &:hover{
         transform: translateY(-5px);
     }
@@ -94,4 +94,20 @@ export const TaskTag = styled.small`
     padding: 3.5px;
     background: #c3eaff;
     border-radius: 5px;
+`
+
+export const DelBtn = styled.div`
+    width: 20px;
+    height: 20px;
+    border: solid 1px #93000B;
+    color: #93000B;
+    background-color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 `

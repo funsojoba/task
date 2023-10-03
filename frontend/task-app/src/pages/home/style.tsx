@@ -7,6 +7,10 @@ import styled from "styled-components";
 export const SectionOne = styled.div`
     display: flex;
     position: relative;
+
+    @media only screen and (max-width:930px){
+        height: 80vh;
+    }
 `
 
 export const SectionOneText = styled.div`
@@ -14,11 +18,17 @@ export const SectionOneText = styled.div`
     text-align: left;
     padding:50px;
     position: relative;
+    @media only screen and (max-width:930px){
+        padding: 20px;
+    }
 `
 
 export const SectionOneImg = styled.div`
     flex: 1;
     padding: 50px;
+    @media only screen and (max-width:930px){
+        display: none;
+    }
 `
 
 export const ImageDiv = styled.div`
@@ -37,4 +47,20 @@ export const Quote = styled.div`
     position: absolute;
     bottom: 10px;
     left: 10px;
+    @media only screen and (max-width:930px){
+        bottom: 0;
+    }
+`
+
+
+export const DezOne = styled.div`
+    position: absolute;
+    bottom: 0;
+    right: 0;`
+
+
+export const DezTwo = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
 `

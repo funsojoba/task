@@ -3,7 +3,7 @@ import {
     Input, Select,
     DashBody, CardStyle,
     TaskTag, CardPriority,
-    CardHeader, CardHeaderText } from "./style"
+    CardHeader, CardHeaderText, DelBtn } from "./style"
 
 import { Button } from "../../components/Button/index"
 import { PTag } from "../../components/Paragraph"
@@ -29,6 +29,7 @@ export const Dashboard = ()=>{
 
         <DashBody>
             <CardStyle>
+                <DelBtn>X</DelBtn>
                 <CardHeader>
                     <CardPriority priority="mid" />
                     <CardHeaderText>
@@ -40,6 +41,7 @@ export const Dashboard = ()=>{
                     <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique." />
                 </div>
             </CardStyle>
+
             <CardStyle>
                 <CardHeader>
                 <CardPriority priority="high" />
