@@ -7,16 +7,15 @@ import styled from "styled-components";
 export const SectionOne = styled.div`
     display: flex;
     position: relative;
-
-    @media only screen and (max-width:930px){
-        height: 80vh;
-    }
+    height: 80vh;
 `
 
 export const SectionOneText = styled.div`
     flex: 1;
     text-align: left;
-    padding:50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     @media only screen and (max-width:930px){
         padding: 20px;
@@ -26,6 +25,9 @@ export const SectionOneText = styled.div`
 export const SectionOneImg = styled.div`
     flex: 1;
     padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @media only screen and (max-width:930px){
         display: none;
     }
@@ -45,10 +47,13 @@ export const Quote = styled.div`
     border-radius: 4px;
     box-shadow: 0 10px 30px rgba(0,0,0,.03);
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     @media only screen and (max-width:930px){
-        bottom: 0;
+        transform: translateX(-50%);
+        width: 90%;
     }
 `
 
