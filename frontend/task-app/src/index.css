@@ -6,10 +6,23 @@
 
   color-scheme: light dark;
   background-color: #ECF9FF;
+  position: relative;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+.dez-one{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.dez-two{
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -1,24 +1,57 @@
-import { Nav, NavLogo, NavAuth, NavUl, NavLi, NavLink } from "./style"
+import { useState } from "react"
+import { Link } from "react-router-dom"
 
-import { Button } from "../Button/index"
+import { Nav, NavLinkText, NavAuth, NavUl, NavLi, NavLink, MenuBar } from "./style"
 
 export const NavBar = () => {
+
+    const [activeBar, setActiveBar] = useState(false)
+
     return <Nav>
         <div className="logo">
-            <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
+            <Link to="/">
+                <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
+            </Link>
         </div>
-        <div>
+        <NavLinkText>
             <NavUl>
-                <NavLi><NavLink className="active" href="#">Home</NavLink></NavLi>
-                <NavLi><NavLink href="#">About</NavLink></NavLi>
-                <NavLi><NavLink href="#">Services</NavLink></NavLi>
-                <NavLi><NavLink href="#">Review</NavLink></NavLi>
-                <NavLi><NavLink href="#">Support</NavLink></NavLi>
+                <NavLi>
+                    <NavLink>
+                        <Link className="active" to="#">Home</Link>
+                    </NavLink>
+                </NavLi>
+                <NavLi>
+                    <NavLink>
+                        <Link className="active" to="#">About</Link>
+                    </NavLink>
+                </NavLi>
+                <NavLi>
+                    <NavLink>
+                        <Link className="active" to="#">Services</Link>
+                    </NavLink>
+                </NavLi>
+                <NavLi>
+                    <NavLink>
+                        <Link className="active" to="#">Review</Link>
+                    </NavLink>
+                </NavLi>
+                <NavLi>
+                    <NavLink>
+                        <Link className="active" to="#">Support</Link>
+                    </NavLink>
+                </NavLi>
             </NavUl>
-        </div>
+        </NavLinkText>
+        <MenuBar>
+            <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696348092/tasky/yh1cb9pai36uixw11afc.png"/>
+        </MenuBar>
         <NavAuth>
-            <Button btnText="Log in" />
-            <Button primary btnText="Sign up" />
+            <NavLink active={activeBar}>
+                <Link to="/login">Log in</Link>
+            </NavLink>
+            <NavLink primary>
+                <Link to="/signup">Sign Up</Link>
+            </NavLink>
         </NavAuth>
     </Nav>
 }

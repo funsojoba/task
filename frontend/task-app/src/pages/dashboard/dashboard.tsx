@@ -5,9 +5,9 @@ import {
     TaskTag, CardPriority,
     CardHeader, CardHeaderText } from "./style"
 
-import { Button } from "../components/Button/index"
-import { PTag } from "../components/Paragraph"
-import { H3Tag } from "../components/H3"
+import { Button } from "../../components/Button/index"
+import { PTag } from "../../components/Paragraph"
+import { H3Tag } from "../../components/H3"
 
 
 export const Dashboard = ()=>{
