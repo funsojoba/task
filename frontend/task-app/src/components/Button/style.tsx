@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
-  background-color: #060640;
-  color: #fff;
+
+interface ButtonProps {
+    primary?: boolean;
+  }
+
+
+export const StyledButton = styled.button<ButtonProps>`
+  background-color: ${(props) => (props.primary ? '#060640' : '#fff')};
+  color: ${(props) => (props.primary ? "#fff" : "#060640")};
   padding: 10px 20px;
   font-size: 16px;
   border: none;

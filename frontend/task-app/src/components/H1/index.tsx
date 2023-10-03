@@ -1,5 +1,12 @@
+import React from "react"
+import { H1 } from "./style"
 
 
-export const H1 = ()=>{
-    return <h1>Get Started</h1>
+interface H1Props{
+    text: string
+}
+
+
+export const H1Tag: React.FC<H1Props> = ({text}) => {
+    return <H1>{text}</H1>
 }
