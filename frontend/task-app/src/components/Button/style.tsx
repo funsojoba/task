@@ -15,6 +15,7 @@ export const StyledButton = styled.button<ButtonProps>`
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin: 5px;
 
   &:hover {
     transform: scale(1.05);

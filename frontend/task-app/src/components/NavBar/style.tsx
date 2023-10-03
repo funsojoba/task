@@ -31,4 +31,6 @@ export const NavLi = styled.li`
 export const NavLink = styled.a`
     display: inline-block;
     text-decoration: none;
+    color: #060640;
+
 `

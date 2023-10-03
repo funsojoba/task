@@ -1,6 +1,6 @@
 import { Nav, NavLogo, NavAuth, NavUl, NavLi, NavLink } from "./style"
 
-
+import { Button } from "../Button/index"
 
 export const NavBar = () => {
     return <Nav>
@@ -17,10 +17,8 @@ export const NavBar = () => {
             </NavUl>
         </div>
         <NavAuth>
-            <ul>
-                <NavLi><NavLink href="#" className="login">Log In</NavLink></NavLi>
-                <NavLi><NavLink href="#" className="signup">Sign Up</NavLink></NavLi>
-            </ul>
+            <Button btnText="Log in" />
+            <Button primary btnText="Sign up" />
         </NavAuth>
     </Nav>
 }
