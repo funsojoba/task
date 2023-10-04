@@ -6,6 +6,8 @@ import { SectionOne, SectionOneText, SectionOneImg, ImageDiv, Img, Quote, DezOne
 import { Link } from "react-router-dom";
 import { NavLink } from "../../components/NavBar/style";
 
+
+
 export const Home = () => {
     return <div>
         <NavBar></NavBar>

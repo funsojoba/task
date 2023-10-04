@@ -9,8 +9,24 @@ import { Button } from "../../components/Button/index"
 import { PTag } from "../../components/Paragraph"
 import { H3Tag } from "../../components/H3"
 
+import { useAppSelector } from "../../hooks/useTypedSelector"
+import { useAppDispatch } from "../../hooks/useTypedSelector"
+import { useEffect } from "react"
+
+import { getPosts } from "../../store/features/postSlice"
+
 
 export const Dashboard = ()=>{
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(getPosts());
+      }, [dispatch]);
+
+    const {data, error, loading } = useAppSelector(state => state)
+
+
+    console.log(data)
+
     return <div>
         <DashNav>
             <div>

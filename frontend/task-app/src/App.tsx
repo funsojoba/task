@@ -6,9 +6,9 @@ import { LogInPage } from './pages/login/login'
 import { SignUnPage } from './pages/signup'
 
 
+import { useSelector } from 'react-redux'
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>

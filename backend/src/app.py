@@ -1,8 +1,11 @@
 import os
 import logging
+from datetime import datetime
 
 from decouple import config
 from dotenv import load_dotenv
+
+# from flask_cors import CORS
 from flask import Flask, request
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -13,11 +16,12 @@ from src.helpers.response import api_response
 
 
 from src.db import db
-
 from src.auth.model import User
 
 
+# cors = CORS(app, resources={r"/*": {"origins": "*"}})
 load_dotenv()
+
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -43,7 +47,11 @@ def user_lookup_callback(_jwt_header, jwt_data):
 
 @app.route("/")
 def index():
-    return api_response(200, message="Welcome to my API")
+    return api_response(
+        200,
+        data={"name": "Tasky", "date": datetime.now().strftime("%B %d, %Y")},
+        message="Welcome to my API",
+    )
 
 
 if __name__ == "__main__":
