@@ -5,7 +5,7 @@ from datetime import datetime
 from decouple import config
 from dotenv import load_dotenv
 
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask import Flask, request
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -19,7 +19,6 @@ from src.db import db
 from src.auth.model import User
 
 
-# cors = CORS(app, resources={r"/*": {"origins": "*"}})
 load_dotenv()
 
 
@@ -29,6 +28,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_KEY")
 
+cors = CORS(app)
 jwt = JWTManager(app)
 db.init_app(app)
 migrate = Migrate(app, db)

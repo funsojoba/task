@@ -1,9 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import postSlice from "./features/postSlice";
+import loginSlice from "./features/authSlice"
+
+const rootReducer = {
+  post: postSlice,
+  auth: loginSlice,
+
+};
 
 const store = configureStore({
-  reducer: postSlice,
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

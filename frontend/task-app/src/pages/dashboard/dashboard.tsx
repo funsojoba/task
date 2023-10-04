@@ -22,7 +22,7 @@ export const Dashboard = ()=>{
         dispatch(getPosts());
       }, [dispatch]);
 
-    const {data, error, loading } = useAppSelector(state => state)
+    const {data, error, loading } = useAppSelector(state => state.post)
 
 
     console.log(data)
