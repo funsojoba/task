@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import postSlice from "./features/postSlice";
-import loginSlice from "./features/authSlice"
+import loginSlice from "./features/auth/login"
 import listTaskSlice from "./features/tasks/listTaskSlice";
+import signupSlice from "./features/auth/signup"
+
 
 const rootReducer = {
   post: postSlice,
-  auth: loginSlice,
+  login: loginSlice,
   listTask: listTaskSlice,
+  signup: signupSlice
 
 };
 

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
+import BASEURL from '../../baseURL';
 
 
 
@@ -12,18 +13,26 @@ type LogIn = {
 // Action
 export const loginAction = createAsyncThunk(
     "auth/login",
-    async (data, thunkApi) => {
+    async (data:{username: string, password: string}, thunkApi) => {
       try {
         const response = await axios.post<LogIn>(
-          "http://127.0.0.1:8000/api/v1/auth/login",
+          BASEURL + "/api/auth/login",
           data=data
         );
+        console.log("DATA: -->",response.data)
 
-        console.log("--***--",response.data)
+        // store token in localStorage
+        const token = response.data?.data.token
+        localStorage.setItem('token', token)
+
+          setInterval(function () {
+            window.location.href = "/dashboard";
+        }, 1500);
+
         return response.data;
       } catch (error: any) {
         const message = error.message;
-        return thunkApi.rejectWithValue(message);
+        return thunkApi.rejectWithValue(error.response.data.message);
       }
     }
   );
@@ -57,8 +66,7 @@ const loginSlice = createSlice({
         })
         .addCase(loginAction.rejected, (state, action: PayloadAction<any>) => {
           state.error = action.payload;
-          console.log("** failed")
-          console.log(state.error)
+          console.log(action)
         });
     },
   });

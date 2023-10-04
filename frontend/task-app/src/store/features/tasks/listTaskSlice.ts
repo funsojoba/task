@@ -15,8 +15,8 @@ type Task = {
     expiry_date: string
 }
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjQ1NTIwNSwianRpIjoiZWViNjYzODctMjE1MC00MjI2LWEwNDctMDEzNGNiMDhjNTk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjk2NDU1MjA1LCJleHAiOjE2OTY0NTYxMDV9.sFB7zS2KhmOe0iTmoeORpL_sJ-nxMYr4vfCbzY1ixgU"
 
+const token: any = localStorage.getItem('token')
 
 //  ACTION
 

@@ -13,6 +13,7 @@ import { H3Tag } from "../../components/H3"
 import { useAppSelector } from "../../hooks/useTypedSelector"
 import { useAppDispatch } from "../../hooks/useTypedSelector"
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 
 // import { getPosts } from "../../store/features/postSlice"
 import { getTasks } from "../../store/features/tasks/listTaskSlice"
@@ -43,7 +44,9 @@ export const Dashboard = ()=>{
     return <div>
         <DashNav>
             <div>
-                <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
+                <Link to="/">
+                    <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
+                </Link>
             </div>
             <div>
                 <Input type="search"/>
