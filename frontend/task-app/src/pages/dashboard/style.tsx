@@ -91,7 +91,7 @@ export const CardHeaderText = styled.div`
 export const TaskTag = styled.small`
     display: inline-block;
     color: #005f92;
-    padding: 3.5px;
+    padding: 3.5px 7px;
     background: #c3eaff;
     border-radius: 5px;
 `
@@ -110,4 +110,14 @@ export const DelBtn = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+`
+
+
+export const TagInfo = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const TimeTag = styled.small`
+    color: #4b4b66;
 `

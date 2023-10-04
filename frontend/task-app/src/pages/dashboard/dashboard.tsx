@@ -3,7 +3,8 @@ import {
     Input, Select,
     DashBody, CardStyle,
     TaskTag, CardPriority,
-    CardHeader, CardHeaderText, DelBtn } from "./style"
+    CardHeader, CardHeaderText,
+    DelBtn, TagInfo, TimeTag } from "./style"
 
 import { Button } from "../../components/Button/index"
 import { PTag } from "../../components/Paragraph"
@@ -17,6 +18,17 @@ import { useEffect } from "react"
 import { getTasks } from "../../store/features/tasks/listTaskSlice"
 
 
+// import Task
+
+type Task = {
+    id: string,
+    title: string,
+    description: string,
+    status: string,
+    priority: string,
+    expiry_date: string
+}
+
 export const Dashboard = ()=>{
     const dispatch = useAppDispatch();
 
@@ -26,7 +38,7 @@ export const Dashboard = ()=>{
 
     const {data, error, loading } = useAppSelector(state => state.listTask)
 
-    console.log("******", data, loading, error)
+    const taskData = data?.data?.tasks ?? [];
 
     return <div>
         <DashNav>
@@ -45,93 +57,41 @@ export const Dashboard = ()=>{
         </DashNav>
 
         <DashBody>
-            <CardStyle>
-                <DelBtn>X</DelBtn>
-                <CardHeader>
-                    <CardPriority priority="mid" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique." />
-                </div>
-            </CardStyle>
 
-            <CardStyle>
-                <CardHeader>
-                <CardPriority priority="high" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-            <CardStyle>
-                <CardHeader>
-                <CardPriority priority="low" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-            <CardStyle>
-                <CardHeader>
-                <CardPriority priority="mid" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-            <CardStyle>
-                <CardHeader>
-                    <CardPriority priority="mid" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-            <CardStyle>
-                <CardHeader>
-                    <CardPriority priority="high" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-            <CardStyle>
-                <CardHeader>
-                <CardPriority priority="low" />
-                    <CardHeaderText>
-                        <H3Tag text="Write Documentation" />
-                        <TaskTag>In Progress</TaskTag>
-                    </CardHeaderText>
-                </CardHeader>
-                <div className="card-text">
-                    <PTag text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, at, magni similique, aliquid velit necessitatibus ea tempora est saepe in ipsum possimus." />
-                </div>
-            </CardStyle>
-
+            {taskData.length > 0 ? (
+                taskData.map((el:Task)=>(
+                    <CardStyle key={el.id}>
+                        <DelBtn>X</DelBtn>
+                        <CardHeader>
+                            <CardPriority priority={el.priority} />
+                            <CardHeaderText>
+                                <H3Tag text={el.title} />
+                                <TagInfo>
+                                    <TaskTag>{el.status}</TaskTag>
+                                    <TimeTag>{el.expiry_date}</TimeTag>
+                                </TagInfo>
+                            </CardHeaderText>
+                        </CardHeader>
+                        <div className="card-text">
+                            <PTag text={el.description} />
+                        </div>
+                    </CardStyle>
+                ))
+            ) : (
+                <CardStyle>
+                        <DelBtn>X</DelBtn>
+                        <CardHeader>
+                            <CardPriority priority="mid" />
+                            <CardHeaderText>
+                                <H3Tag text="Create a new task" />
+                                <TaskTag>In Progress</TaskTag>
+                            </CardHeaderText>
+                        </CardHeader>
+                        <div className="card-text">
+                            <PTag text="You don't have any task set up yet" />
+                        </div>
+                    </CardStyle>
+            )}
         </DashBody>
 
     </div>

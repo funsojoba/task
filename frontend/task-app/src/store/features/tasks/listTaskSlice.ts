@@ -15,7 +15,7 @@ type Task = {
     expiry_date: string
 }
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjQ1MzMxOCwianRpIjoiZjI5ZGRmOWMtZmUxZi00YjBkLTkyYmEtZGExN2NjMGNlMzE3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjk2NDUzMzE4LCJleHAiOjE2OTY0NTQyMTh9.n11yOgkaDJ8IEE6nrxK-T9AIMeId5UxDdO16rbZjnf4"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjQ1NTIwNSwianRpIjoiZWViNjYzODctMjE1MC00MjI2LWEwNDctMDEzNGNiMDhjNTk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjk2NDU1MjA1LCJleHAiOjE2OTY0NTYxMDV9.sFB7zS2KhmOe0iTmoeORpL_sJ-nxMYr4vfCbzY1ixgU"
 
 
 //  ACTION
@@ -68,7 +68,6 @@ const listTaskSlice = createSlice({
       .addCase(getTasks.rejected, (state, action: PayloadAction<any>)=>{
         state.error = action.payload
         state.loading = false
-        console.log("** failed")
         console.log(state.error)
       })
   }
