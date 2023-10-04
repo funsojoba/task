@@ -13,19 +13,20 @@ import { useAppSelector } from "../../hooks/useTypedSelector"
 import { useAppDispatch } from "../../hooks/useTypedSelector"
 import { useEffect } from "react"
 
-import { getPosts } from "../../store/features/postSlice"
+// import { getPosts } from "../../store/features/postSlice"
+import { getTasks } from "../../store/features/tasks/listTaskSlice"
 
 
 export const Dashboard = ()=>{
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        dispatch(getPosts());
+        dispatch(getTasks());
       }, [dispatch]);
 
-    const {data, error, loading } = useAppSelector(state => state.post)
+    const {data, error, loading } = useAppSelector(state => state.listTask)
 
-
-    console.log(data)
+    console.log("******", data, loading, error)
 
     return <div>
         <DashNav>

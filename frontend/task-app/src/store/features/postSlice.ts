@@ -15,7 +15,6 @@ export const getPosts = createAsyncThunk(
   async (data, thunkApi) => {
     try {
       const response = await axios.get<Post[]>(
-        // "https://jsonplaceholder.org/posts"
         "http://127.0.0.1:8000/"
       );
       return response.data;
@@ -55,6 +54,7 @@ const postSlice = createSlice({
       })
       .addCase(getPosts.rejected, (state, action: PayloadAction<any>) => {
         state.error = action.payload;
+        state.loading = false
         console.log("** failed")
         console.log(state.error)
       });

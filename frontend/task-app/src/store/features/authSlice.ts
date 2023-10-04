@@ -1,9 +1,7 @@
-// authSlice.ts
-
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios'; // Import Axios
 
-// Define your initial state
+
 
 type LogIn = {
     token: string;
@@ -17,7 +15,7 @@ export const loginAction = createAsyncThunk(
     async (data, thunkApi) => {
       try {
         const response = await axios.post<LogIn>(
-          "http://127.0.0.1:8000/auth/login",
+          "http://127.0.0.1:8000/api/v1/auth/login",
           data=data
         );
 

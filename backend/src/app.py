@@ -5,7 +5,7 @@ from datetime import datetime
 from decouple import config
 from dotenv import load_dotenv
 
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask import Flask, request
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -27,15 +27,17 @@ app.secret_key = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["CORS_HEADERS"] = "Content-Type"
 
-cors = CORS(app)
+
+CORS(app, resources={r"/*": {"origins": "*"}})
+Migrate(app, db)
 jwt = JWTManager(app)
 db.init_app(app)
-migrate = Migrate(app, db)
 
 # Routes
-app.register_blueprint(auth_bp, url_prefix="/auth")
-app.register_blueprint(task_bp, url_prefix="/tasks")
+app.register_blueprint(auth_bp)
+app.register_blueprint(task_bp)
 
 
 @jwt.user_lookup_loader
@@ -55,4 +57,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=config("PORT"))
+    app.run(host="0.0.0.0", debug=True, port=config("PORT"), threaded=False)
