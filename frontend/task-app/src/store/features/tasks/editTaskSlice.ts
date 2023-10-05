@@ -30,7 +30,6 @@ export const editTaskAction = createAsyncThunk(
       return response.data;
     } catch (error: any) {
       const message = error.message;
-      console.log(error.response);
       return thunkApi.rejectWithValue(error.response.data.msg);
     }
   }
@@ -64,7 +63,6 @@ const editTaskSlice = createSlice({
       .addCase(editTaskAction.rejected, (state, action: PayloadAction<any>) => {
         state.error = action.payload;
         state.loading = false;
-        console.log(state.error);
       });
   },
 });

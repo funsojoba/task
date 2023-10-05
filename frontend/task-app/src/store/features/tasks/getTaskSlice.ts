@@ -26,8 +26,6 @@ export const getTaskAction = createAsyncThunk(
             )
             return response.data;
         } catch(error:any){
-            const message = error.message
-            console.log(error)
             return thunkApi.rejectWithValue(error.response.data.msg)
         }
     }
@@ -62,7 +60,6 @@ const getTaskSlice = createSlice({
             .addCase(getTaskAction.rejected, (state, action: PayloadAction<any>)=>{
                 state.error = action.payload
                 state.loading = false
-                console.log(state.error)
             })
     }
   })

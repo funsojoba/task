@@ -21,7 +21,6 @@ export const SignUnPage = ()=>{
 
     const {data, error, loading } = useAppSelector(state => state.signup)
 
-    console.log(data, error, loading)
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

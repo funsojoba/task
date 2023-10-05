@@ -26,7 +26,6 @@ export const deleteTaskAction = createAsyncThunk(
         return id; // Return the deleted task ID
       } catch (error: any) {
         const message = error.message;
-        console.log(error.response);
         return thunkApi.rejectWithValue(error.response.data.msg);
       }
     }
@@ -61,7 +60,6 @@ export const deleteTaskAction = createAsyncThunk(
         .addCase(deleteTaskAction.rejected, (state, action: PayloadAction<any>) => {
           state.error = action.payload;
           state.loading = false;
-          console.log(state.error);
         });
     },
   });

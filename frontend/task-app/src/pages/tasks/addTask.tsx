@@ -36,8 +36,6 @@ export const AddTaskPage = ()=>{
         dispatch(addTaskAction(postData));
       };
 
-      console.log("dada: ", data)
-
       const navigate = useNavigate()
 
     return <div>

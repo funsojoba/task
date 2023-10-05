@@ -19,7 +19,6 @@ export const loginAction = createAsyncThunk(
           BASEURL + "/api/auth/login",
           data=data
         );
-        console.log("DATA: -->",response.data)
 
         // store token in localStorage
         const token = response.data?.data.token

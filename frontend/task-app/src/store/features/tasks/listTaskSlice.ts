@@ -28,7 +28,6 @@ export const getTasks = createAsyncThunk(
         BASEURL+ `api/tasks?search=${search}`,
         {headers:getHeaders(token)}
       )
-     console.log(response.data)
       return response.data;
     } catch(error: any){
       const message = error.message
@@ -70,7 +69,6 @@ const listTaskSlice = createSlice({
       .addCase(getTasks.rejected, (state, action: PayloadAction<any>)=>{
         state.error = action.payload
         state.loading = false
-        console.log(state.error)
       })
   }
 })

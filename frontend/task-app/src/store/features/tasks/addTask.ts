@@ -22,14 +22,11 @@ export const addTaskAction = createAsyncThunk(
                 BASEURL + "api/tasks",
                 data=data, {headers:getHeaders(token)}
             )
-            console.log(response.data)
             setInterval(function () {
                 window.location.href = "/dashboard";
             }, 1500);
             return response.data;
         }catch(error:any){
-            const message = error.message
-            console.log(error.response)
             return thunkApi.rejectWithValue(error.response.data.msg)
         }
     }
@@ -66,7 +63,6 @@ const addTaskSlice = createSlice({
             .addCase(addTaskAction.rejected, (state, action: PayloadAction<any>)=>{
                 state.error = action.payload
                 state.loading = false
-                console.log(state.error)
 
             })
     }
