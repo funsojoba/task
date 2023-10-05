@@ -66,26 +66,26 @@ export const Dashboard = ()=>{
 
             {taskData.length > 0 ? (
                 taskData.map((el:Task)=>(
-                    <CardStyle key={el.id}>
-                        <DelBtn>X</DelBtn>
-                        <CardHeader>
-                            <CardPriority priority={el.priority} />
-                            <CardHeaderText>
-                                <H3Tag text={el.title} />
-                                <TagInfo>
-                                    <TaskTag>{el.status}</TaskTag>
-                                    <TimeTag>{el.expiry_date}</TimeTag>
-                                </TagInfo>
-                            </CardHeaderText>
-                        </CardHeader>
-                        <div className="card-text">
-                            <PTag text={el.description} />
-                        </div>
-                    </CardStyle>
+                    <Link to={"/edit/" + el.id}>
+                        <CardStyle key={el.id}>
+                            <CardHeader>
+                                <CardPriority priority={el.priority} />
+                                <CardHeaderText>
+                                    <H3Tag text={el.title} />
+                                    <TagInfo>
+                                        <TaskTag>{el.status}</TaskTag>
+                                        <TimeTag>{el.expiry_date}</TimeTag>
+                                    </TagInfo>
+                                </CardHeaderText>
+                            </CardHeader>
+                            <div className="card-text">
+                                <PTag text={el.description} />
+                            </div>
+                        </CardStyle>
+                    </Link>
                 ))
             ) : (
                 <CardStyle>
-                        <DelBtn>X</DelBtn>
                         <CardHeader>
                             <CardPriority priority="mid" />
                             <CardHeaderText>

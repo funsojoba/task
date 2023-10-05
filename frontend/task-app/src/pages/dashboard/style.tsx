@@ -43,6 +43,10 @@ export const DashBody = styled.div`
     flex-wrap: wrap;
     margin-top: 20px;
     place-items: flex-start;
+
+    a{
+        text-decoration: none;
+    }
     /* place-content: center; */
 `
 
