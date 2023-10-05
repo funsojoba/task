@@ -2,7 +2,7 @@
 
 Welcome to your task manager app!
 
-https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696503313/tasky/wyfiqzj57mfuxnege7k9.jpg
+![homepage](https://github.com/funsojoba/task/assets/42432746/4e0e93dd-db13-4866-860b-13253b8b4df2)
 
 ## How to get started:
 * clone the repo: `git clone https://github.com/funsojoba/task.git`
@@ -22,3 +22,5 @@ ___
 * install dependencies | run `npm install`
 * start dev server | run `npm run dev`
 * frontend code should run here `http://localhost:5173/`
+
+* Happy hacking 👍 Tschüss!!
