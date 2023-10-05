@@ -6,6 +6,7 @@ import listTaskSlice from "./features/tasks/listTaskSlice";
 import signupSlice from "./features/auth/signup"
 import addTaskSlice from "./features/tasks/addTask"
 import getTaskSlice from "./features/tasks/getTaskSlice"
+import editTaskSlice from "./features/tasks/editTaskSlice"
 
 
 const rootReducer = {
@@ -14,7 +15,8 @@ const rootReducer = {
   listTask: listTaskSlice,
   signup: signupSlice,
   addTask: addTaskSlice,
-  getTask: getTaskSlice
+  getTask: getTaskSlice,
+  editTask: editTaskSlice
 
 };
 

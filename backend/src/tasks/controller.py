@@ -57,21 +57,24 @@ def update_task(id):
     data = request.json
 
     if "status" in data:
-        try:
-            task.status = Status[data["status"].upper()]
-        except KeyError:
-            return jsonify({"message": "Invalid status value"}), 400
+        if data["status"]:
+            try:
+                task.status = Status[data["status"].upper()]
+            except KeyError:
+                return api_response(400, message="Invalid status value")
 
     if "priority" in data:
-        try:
-            task.priority = Priority[data["priority"].upper()]
-        except KeyError:
-            return jsonify({"message": "Invalid priority value"}), 400
+        if data["priority"]:
+            try:
+                task.priority = Priority[data["priority"].upper()]
+            except KeyError:
+                return api_response(400, message="Invalid priority value")
 
-    task.title = data.get("title", task.title)
-    task.description = data.get("description", task.description)
-    task.category = data.get("category", task.category)
-    task.expiry_date = data.get("expiry_date", task.expiry_date)
+    task.title = data.get("title") or task.title
+    task.description = data.get("description") or task.description
+    task.category = data.get("category") or task.category
+    task.priority = data.get("priority") or task.priority
+    task.expiry_date = data.get("expiry_date") or task.expiry_date
     db.session.commit()
 
     return api_response(200, message="Task updated successfully")

@@ -14,7 +14,7 @@ import { useState } from "react"
 import { Btn } from "../login/style"
 import { Link } from "react-router-dom"
 
-import { addTaskAction } from "../../store/features/tasks/addTask"
+import { editTaskAction } from "../../store/features/tasks/editTaskSlice"
 
 import { getTaskAction } from "../../store/features/tasks/getTaskSlice"
 
@@ -31,38 +31,41 @@ export const EditTaskPage = ()=>{
     const [expiry_date, seteExpiryDate] = useState("")
 
     const {data, error, loading } = useAppSelector(state => state.getTask)
-
-    const postData = { title, description, priority, status, expiry_date }
-
-    console.log(params.id)
-    useEffect(() => {
-        dispatch(getTaskAction(params.id));
-      }, [dispatch, params.id]);
+    const id = params.id;
+    const taskData = {title, description, priority, status, expiry_date }
 
 
-      console.log("dada: ", data)
-      console.log(data?.data)
+    useEffect(()=>{
+        dispatch(getTaskAction(id))
+    }, [dispatch, id])
 
-      const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    return <div>
-        <DashNav>
-            <div>
-                <Link to="/">
-                    <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
-                </Link>
+    const handleEdit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch(editTaskAction({id, taskData}))
+        navigate(-1)
+    }
 
-            </div>
-                <Arrow onClick={()=> navigate(-1)}>
-                    <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696468193/tasky/idqtt1oarlylzxn7qa1f.svg" />
-                </Arrow>
-        </DashNav>
+    return (
+        <div>
+            <DashNav>
+                <div>
+                    <Link to="/">
+                        <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696273159/tasky/f1dzlfilnza7zgxhqkf6.svg" alt="tasky" />
+                    </Link>
 
-        <DashBody>
+                </div>
+                    <Arrow onClick={()=> navigate(-1)}>
+                        <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696468193/tasky/idqtt1oarlylzxn7qa1f.svg" />
+                    </Arrow>
+            </DashNav>
+
+            <DashBody>
             <FormWrapper>
                 {error && <InfoMsg><small>{error}</small></InfoMsg>}
                 {/* {data && <InfoMsg primary><small>{data.message}</small></InfoMsg>} */}
-                <Form >
+                <Form onSubmit={handleEdit} >
                     <InputWrapper>
                         <Label>Title</Label>
                         <InputTag
@@ -75,7 +78,7 @@ export const EditTaskPage = ()=>{
                         <Label>Description</Label>
                         <TextArea
                             placeholder={data?.data.description || "Description"}
-                            value={description} onChange={(e)=>setDescription(e.target.value)}
+                            value={ description} onChange={(e)=>setDescription(e.target.value)}
                         />
                     </InputWrapper>
 
@@ -100,10 +103,11 @@ export const EditTaskPage = ()=>{
 
                     </InputWrapper>
                     <InputWrapper>
-                        <Label>Due date</Label>
+                        <Label>Due date {'->'} {data?.data.expiry_date}</Label>
                         <InputTag
                             type="date"
-                            value={data?.data.expiry_date}
+                            // value={data?.data.expiry_date}
+                            value={expiry_date}
                             onChange={(e)=>seteExpiryDate(e.target.value)}  />
                     </InputWrapper>
                     <Btn type="submit">Submit</Btn>
@@ -111,6 +115,8 @@ export const EditTaskPage = ()=>{
             </FormWrapper>
 
         </DashBody>
+        </div>
+    )
 
-    </div>
-}
+
+    }
