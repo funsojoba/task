@@ -1,12 +1,10 @@
 import {
-    DashNav,
-    Input, Select,
+    DashNav, Input,
     DashBody, CardStyle,
     TaskTag, CardPriority,
     CardHeader, CardHeaderText,
-    DelBtn, TagInfo, TimeTag } from "./style"
+    TagInfo, TimeTag } from "./style"
 
-import { Button } from "../../components/Button/index"
 import { PTag } from "../../components/Paragraph"
 import { H3Tag } from "../../components/H3"
 
@@ -16,8 +14,8 @@ import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { NavLink } from "../../components/NavBar/style"
 
-// import { getPosts } from "../../store/features/postSlice"
 import { getTasks } from "../../store/features/tasks/listTaskSlice"
+import { useState } from "react"
 
 
 // import Task
@@ -33,14 +31,19 @@ type Task = {
 
 export const Dashboard = ()=>{
     const dispatch = useAppDispatch();
+    const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
-        dispatch(getTasks());
-      }, [dispatch]);
+        dispatch(getTasks(search));
+      }, [dispatch, search]);
 
     const {data, error, loading } = useAppSelector(state => state.listTask)
 
     const taskData = data?.data?.tasks ?? [];
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
+      }
 
     return <div>
         <DashNav>
@@ -50,12 +53,9 @@ export const Dashboard = ()=>{
                 </Link>
             </div>
             <div>
-                <Input type="search"/>
-                <Select>
-                    <option>high</option>
-                    <option>mid</option>
-                    <option>low</option>
-                </Select>
+
+                <Input type="search" value={search} onChange={handleChange}/>
+
                 <NavLink primary>
                     <Link to="/add">Add task</Link>
                 </NavLink>

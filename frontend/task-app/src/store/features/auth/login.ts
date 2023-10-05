@@ -40,13 +40,15 @@ export const loginAction = createAsyncThunk(
   interface LoginState {
     loading: boolean;
     error: string | null;
-    data: LogIn | null
+    data: LogIn | null,
+    isLoggedIn: boolean
   }
 
   const initialState = {
     loading: false,
     error: null,
-    data: null
+    data: null,
+    isLoggedIn: false
   } as LoginState
 
 //   Slice
@@ -59,14 +61,16 @@ const loginSlice = createSlice({
       builder
         .addCase(loginAction.pending, (state, action) => {
           state.loading = true;
+          state.isLoggedIn = false
         })
         .addCase(loginAction.fulfilled, (state, action: PayloadAction<LogIn>) => {
           state.loading = false;
           state.data = action.payload;
+          state.isLoggedIn = true
         })
         .addCase(loginAction.rejected, (state, action: PayloadAction<any>) => {
           state.error = action.payload;
-          console.log(action)
+          state.isLoggedIn =  false
         });
     },
   });

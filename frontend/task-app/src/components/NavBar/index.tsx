@@ -5,8 +5,6 @@ import { Nav, NavLinkText, NavAuth, NavUl, NavLi, NavLink, MenuBar } from "./sty
 
 export const NavBar = () => {
 
-    const [activeBar, setActiveBar] = useState(false)
-
     return <Nav>
         <div className="logo">
             <Link to="/">
@@ -46,7 +44,7 @@ export const NavBar = () => {
             <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696348092/tasky/yh1cb9pai36uixw11afc.png"/>
         </MenuBar>
         <NavAuth>
-            <NavLink active={activeBar}>
+            <NavLink >
                 <Link to="/login">Log in</Link>
             </NavLink>
             <NavLink primary>

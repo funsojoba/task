@@ -21,10 +21,12 @@ const token: any = localStorage.getItem('token')
 //  ACTION
 
 export const getTasks = createAsyncThunk(
-  "task/getTasks",async (data, thunkApi) => {
+  "task/getTasks",
+  async (search: string = "", thunkApi) => {
     try{
       const response = await axios.get<Task[]>(
-        BASEURL+"api/tasks" , {headers:getHeaders(token)}
+        BASEURL+ `api/tasks?search=${search}`,
+        {headers:getHeaders(token)}
       )
      console.log(response.data)
       return response.data;

@@ -2,22 +2,23 @@
 
 Welcome to your task manager app!
 
+https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696503313/tasky/wyfiqzj57mfuxnege7k9.jpg
+
 ## How to get started:
-* clone the repo: `git clone https://github.com/yourusername/tasky.git`
+* clone the repo: `git clone https://github.com/funsojoba/task.git`
 
 ### for backend:
-* cd tasky/backend
+* cd task/backend
 * make sure you have docker installed on your machine
 * run `cp .env.example .env` and configure the .env file
 * run `make build` to build the docker image
 * run `make up` to start the backend server
-* the app should be running on `http://localhost:8000`
-* you can visit the API docs at `http://localhost:8000/docs`
+* the app should be running on `http://localhost:8000/`
+* you can visit the API docs at [here](https://documenter.getpostman.com/view/26204419/2s9YJey1k3)
 
 ___
 ### for frontend:
-* cd tasky/frontend
-// install dependencies
-* run `npm install`
-// start dev server
-* run `npm run dev`
+* cd task/frontend
+* install dependencies | run `npm install`
+* start dev server | run `npm run dev`
+* frontend code should run here `http://localhost:5173/`

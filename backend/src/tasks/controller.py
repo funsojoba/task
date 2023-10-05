@@ -11,7 +11,14 @@ from flask_jwt_extended import jwt_required, current_user
 
 @jwt_required()
 def get_tasks():
-    tasks = Task.query.filter_by(owner=current_user).all()
+    search_term = request.args.get("search", "")
+
+    tasks = Task.query.filter(
+        (Task.title.ilike(f"%{search_term}%"))
+        | (Task.description.ilike(f"%{search_term}%")),
+        Task.owner == current_user,
+    ).all()
+
     serialized_tasks = tasks_schema.dump(tasks)
     return api_response(
         200,
