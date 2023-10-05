@@ -15,6 +15,13 @@ Welcome to your task manager app!
 * run `make up` to start the backend server
 * the app should be running on `http://localhost:8000/`
 * you can visit the API docs at [here](https://documenter.getpostman.com/view/26204419/2s9YJey1k3)
+* for development purpose, my db credentials are default postgres credentials on Docker
+    ```
+        POSTGRES_DB=postgres
+        POSTGRES_USER=postgres
+        POSTGRES_PASSWORD=postgres
+    ```
+* You can use these values to generate value for the `SQLALCHEMY_DATABASE_URI` in your `.env`
 
 ___
 ### for frontend:
