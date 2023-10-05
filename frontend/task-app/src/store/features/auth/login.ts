@@ -71,6 +71,7 @@ const loginSlice = createSlice({
         .addCase(loginAction.rejected, (state, action: PayloadAction<any>) => {
           state.error = action.payload;
           state.isLoggedIn =  false
+          state.loading = false
         });
     },
   });

@@ -16,7 +16,7 @@ import { NavLink } from "../../components/NavBar/style"
 
 import { getTasks } from "../../store/features/tasks/listTaskSlice"
 import { useState } from "react"
-
+import BarLoader from "react-spinners/ClipLoader";
 
 // import Task
 
@@ -64,6 +64,8 @@ export const Dashboard = ()=>{
 
         <DashBody>
 
+            {loading && <BarLoader color="#36d7b7" />}
+
             {taskData.length > 0 ? (
                 taskData.map((el:Task)=>(
                     <Link to={"/edit/" + el.id}>
@@ -94,7 +96,7 @@ export const Dashboard = ()=>{
                             </CardHeaderText>
                         </CardHeader>
                         <div className="card-text">
-                            <PTag text="You don't have any task set up yet" />
+                            <PTag text="You don't have any task set up yet, click the 'Add task' button to create one" />
                         </div>
                     </CardStyle>
             )}

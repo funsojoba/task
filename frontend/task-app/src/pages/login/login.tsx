@@ -7,6 +7,7 @@ import { useAppSelector } from "../../hooks/useTypedSelector"
 import { useAppDispatch } from "../../hooks/useTypedSelector"
 import { loginAction } from "../../store/features/auth/login"
 
+import BarLoader from "react-spinners/ClipLoader";
 
 export const LogInPage = ()=>{
     const [username, setUsername] = useState("")
@@ -20,6 +21,7 @@ export const LogInPage = ()=>{
         e.preventDefault();
         dispatch(loginAction({ username, password }));
       };
+
     return <Wrapper>
         <NavBar />
 
@@ -33,7 +35,7 @@ export const LogInPage = ()=>{
                     <H3Tag text="Log in"/>
                     <InputTag type="text" placeholder="username" value={username} onChange={(e)=>setUsername(e.target.value)} />
                     <InputTag type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                    <Btn type="submit">Login</Btn>
+                    <Btn type="submit">{loading ? (<BarLoader color="#36d7b7" />) : "Log In"}</Btn>
                 </FormWrapper>
 
             </FormSide>

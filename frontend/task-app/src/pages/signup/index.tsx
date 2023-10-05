@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useTypedSelector"
 import { InfoMsg } from "../login/style"
 import { Btn } from "../login/style"
 
+import BarLoader from "react-spinners/ClipLoader";
 
 export const SignUnPage = ()=>{
     const [username, setUsername] = useState("")
@@ -40,7 +41,7 @@ export const SignUnPage = ()=>{
                     <H3Tag text="Sign Up"/>
                     <InputTag type="text" placeholder="username" value={username} onChange={(e)=>setUsername(e.target.value)} />
                     <InputTag type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                    <Btn type="submit">Sign Up</Btn>
+                    <Btn type="submit">{loading ? (<BarLoader color="#36d7b7" />) : "Sign Up"}</Btn>
                 </FormWrapper>
             </FormSide>
         </MainVid>

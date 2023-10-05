@@ -26,7 +26,6 @@ export const signupAction = createAsyncThunk(
 
         return response.data;
       } catch (error: any) {
-        const message = error.message;
         return thunkApi.rejectWithValue(error.response.data.message);
       }
     }
@@ -61,7 +60,7 @@ const signupSlice = createSlice({
         })
         .addCase(signupAction.rejected, (state, action: PayloadAction<any>) => {
           state.error = action.payload;
-          console.log(action)
+          state.loading = false
         });
     },
   });
