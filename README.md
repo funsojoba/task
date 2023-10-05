@@ -7,7 +7,7 @@ Welcome to your task manager app!
 ## How to get started:
 * clone the repo: `git clone https://github.com/funsojoba/task.git`
 
-### for backend:
+### For backend:
 * cd task/backend
 * make sure you have docker installed on your machine
 * run `cp .env.example .env` and configure the .env file
@@ -22,12 +22,21 @@ Welcome to your task manager app!
         POSTGRES_PASSWORD=postgres
     ```
 * You can use these values to generate value for the `SQLALCHEMY_DATABASE_URI` in your `.env`
-
+* You can access the content of your database through adminer, visit `http://localhost:8080/`, set the `System` option to `PostgreSQL`, and input the credentials provided above
 ___
-### for frontend:
+### For frontend:
 * cd task/frontend
 * install dependencies | run `npm install`
 * start dev server | run `npm run dev`
 * frontend code should run here `http://localhost:5173/`
 
-* Happy hacking 👍 Tschüss!!
+
+
+## Technologies
+* Python (Flask, Flask Restful)
+* Docker (Containerization)
+* Postgres (Database)
+* React (Redux toolkit, react router, styled component)
+
+
+Happy hacking 👍 Tschüss!!
