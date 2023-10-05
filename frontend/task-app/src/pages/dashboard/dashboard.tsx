@@ -14,6 +14,7 @@ import { useAppSelector } from "../../hooks/useTypedSelector"
 import { useAppDispatch } from "../../hooks/useTypedSelector"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import { NavLink } from "../../components/NavBar/style"
 
 // import { getPosts } from "../../store/features/postSlice"
 import { getTasks } from "../../store/features/tasks/listTaskSlice"
@@ -55,7 +56,9 @@ export const Dashboard = ()=>{
                     <option>mid</option>
                     <option>low</option>
                 </Select>
-                <Button primary btnText="Add task" />
+                <NavLink primary>
+                    <Link to="/add">Add task</Link>
+                </NavLink>
             </div>
         </DashNav>
 

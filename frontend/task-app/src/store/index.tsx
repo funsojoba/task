@@ -4,13 +4,15 @@ import postSlice from "./features/postSlice";
 import loginSlice from "./features/auth/login"
 import listTaskSlice from "./features/tasks/listTaskSlice";
 import signupSlice from "./features/auth/signup"
+import addTaskSlice from "./features/tasks/addTask"
 
 
 const rootReducer = {
   post: postSlice,
   login: loginSlice,
   listTask: listTaskSlice,
-  signup: signupSlice
+  signup: signupSlice,
+  addTask: addTaskSlice
 
 };
 
