@@ -17,6 +17,7 @@ export const DashBody = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    position: relative;
 `
 
 export const FormWrapper = styled.div`
@@ -26,6 +27,7 @@ export const FormWrapper = styled.div`
     padding: 20px;
     border-radius: 20px;
     box-sizing: border-box;
+    position: relative;
     `
 
 export const Form = styled.form`
@@ -88,4 +90,22 @@ export const Arrow = styled.div`
     align-items: center;
     cursor: pointer;
 
+`
+
+export const DeleteIcon = styled.div`
+    background: #6A1219;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+    &:hover {
+        transform: scale(1.05);
+    }
 `

@@ -7,6 +7,7 @@ import signupSlice from "./features/auth/signup"
 import addTaskSlice from "./features/tasks/addTask"
 import getTaskSlice from "./features/tasks/getTaskSlice"
 import editTaskSlice from "./features/tasks/editTaskSlice"
+import deleteTaskSlice from "./features/tasks/deleteTaskSlice";
 
 
 const rootReducer = {
@@ -16,7 +17,8 @@ const rootReducer = {
   signup: signupSlice,
   addTask: addTaskSlice,
   getTask: getTaskSlice,
-  editTask: editTaskSlice
+  editTask: editTaskSlice,
+  deleteTask: deleteTaskSlice,
 
 };
 

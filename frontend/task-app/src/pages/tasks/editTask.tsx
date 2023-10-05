@@ -1,7 +1,7 @@
 import {
     DashNav, Arrow,
     DashBody, FormWrapper,
-    InputTag, Form, Label,
+    InputTag, Form, Label, DeleteIcon,
     InputWrapper, TextArea, Select  } from "./style"
 import { InfoMsg } from "../login/style"
 
@@ -14,6 +14,7 @@ import { useState } from "react"
 import { Btn } from "../login/style"
 import { Link } from "react-router-dom"
 
+import { deleteTaskAction } from "../../store/features/tasks/deleteTaskSlice"
 import { editTaskAction } from "../../store/features/tasks/editTaskSlice"
 
 import { getTaskAction } from "../../store/features/tasks/getTaskSlice"
@@ -47,6 +48,10 @@ export const EditTaskPage = ()=>{
         navigate(-1)
     }
 
+    const handleDelete = ()=>{
+        dispatch(deleteTaskAction(id))
+    }
+
     return (
         <div>
             <DashNav>
@@ -62,7 +67,11 @@ export const EditTaskPage = ()=>{
             </DashNav>
 
             <DashBody>
+
             <FormWrapper>
+                <DeleteIcon onClick={handleDelete}>
+                    <img src="https://res.cloudinary.com/ddl2pf4qh/image/upload/v1696498751/tasky/theyd0taoazbijng8wri.svg"/>
+                </DeleteIcon>
                 {error && <InfoMsg><small>{error}</small></InfoMsg>}
                 {/* {data && <InfoMsg primary><small>{data.message}</small></InfoMsg>} */}
                 <Form onSubmit={handleEdit} >

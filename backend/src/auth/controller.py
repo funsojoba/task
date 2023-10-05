@@ -1,6 +1,8 @@
 from flask import request, Blueprint
 from flask_jwt_extended import create_access_token
 
+from datetime import timedelta, datetime
+
 from marshmallow.exceptions import ValidationError
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -47,7 +49,9 @@ def login():
         return api_response(404, message="User not found")
 
     if check_password_hash(user.password, user_data["password"]):
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(
+            identity=user.id, expires_delta=timedelta(days=1)
+        )
     else:
         return api_response(401, message="Invalid credentials")
 
