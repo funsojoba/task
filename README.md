@@ -25,7 +25,7 @@ Welcome to your task manager app!
 * You can access the content of your database through adminer, visit `http://localhost:8080/`, set the `System` option to `PostgreSQL`, and input the credentials provided above
 ___
 ### For frontend:
-* cd task/frontend
+* cd task/frontend/task-app
 * install dependencies | run `npm install`
 * start dev server | run `npm run dev`
 * frontend code should run here `http://localhost:5173/`
