@@ -39,7 +39,6 @@ export const LogInPage = ()=>{
                 </FormWrapper>
 
             </FormSide>
-            {loading && <p>Loading...</p>}
         </MainVid>
     </Wrapper>
 }

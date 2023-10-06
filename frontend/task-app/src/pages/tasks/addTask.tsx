@@ -14,7 +14,7 @@ import { Btn } from "../login/style"
 import { Link } from "react-router-dom"
 
 import { addTaskAction } from "../../store/features/tasks/addTask"
-
+import BarLoader from "react-spinners/ClipLoader";
 
 
 export const AddTaskPage = ()=>{
@@ -59,6 +59,7 @@ export const AddTaskPage = ()=>{
                     <InputWrapper>
                         <Label>Title</Label>
                         <InputTag
+                            required
                             placeholder="title"
                             type="text"
                             value={title} onChange={(e)=>setTitle(e.target.value)}/>
@@ -74,7 +75,8 @@ export const AddTaskPage = ()=>{
 
                     <InputWrapper>
                         <Label>Priority</Label>
-                        <Select name="priority" onChange={(e)=>setPriority(e.target.value)}>
+                        <Select required name="priority" onChange={(e)=>setPriority(e.target.value)}>
+                            <option>----</option>
                             <option value="high">high</option>
                             <option value="mid">mid</option>
                             <option value="low">low</option>
@@ -83,7 +85,8 @@ export const AddTaskPage = ()=>{
 
                     <InputWrapper>
                         <Label>Status</Label>
-                        <Select name="status" onChange={(e)=>setStatus(e.target.value)}>
+                        <Select required name="status" onChange={(e)=>setStatus(e.target.value)}>
+                            <option>---</option>
                             <option value="todo">todo</option>
                             <option value="in_progress">in progress</option>
                             <option value="none">done</option>
@@ -93,10 +96,11 @@ export const AddTaskPage = ()=>{
                     <InputWrapper>
                         <Label>Due date</Label>
                         <InputTag
+                            required
                             type="date"
                             value={expiry_date} onChange={(e)=>seteExpiryDate(e.target.value)}  />
                     </InputWrapper>
-                    <Btn type="submit">Submit</Btn>
+                    <Btn type="submit">{loading ? (<BarLoader color="#36d7b7" />) : "Submit"}</Btn>
                 </Form>
             </FormWrapper>
 
