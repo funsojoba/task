@@ -19,7 +19,7 @@ export const signupAction = createAsyncThunk(
           BASEURL + "/api/auth/register",
           data=data
         );
-          setInterval(function () {
+          setTimeout(function () {
             window.location.href = "/login";
         }, 1500);
 

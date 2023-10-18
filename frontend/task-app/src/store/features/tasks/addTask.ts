@@ -22,7 +22,8 @@ export const addTaskAction = createAsyncThunk(
                 BASEURL + "api/tasks",
                 data=data, {headers:getHeaders(token)}
             )
-            setInterval(function () {
+            // TODO: setTimeout
+            setTimeout(function () {
                 window.location.href = "/dashboard";
             }, 1500);
             return response.data;

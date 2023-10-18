@@ -20,7 +20,7 @@ export const deleteTaskAction = createAsyncThunk(
     async (id: string, thunkApi) => {
       try {
         await axios.delete(BASEURL + `api/tasks/${id}`, { headers: getHeaders(token) });
-        setInterval(function () {
+        setTimeout(function () {
             window.location.href = "/dashboard";
         }, 1500);
         return id; // Return the deleted task ID

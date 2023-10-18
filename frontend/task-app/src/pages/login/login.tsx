@@ -26,7 +26,6 @@ export const LogInPage = ()=>{
         <NavBar />
 
         <MainVid>
-
             <ImageSide></ImageSide>
             {error && <InfoMsg><small>{error}</small></InfoMsg>}
             {data && <InfoMsg primary><small>{data.message}</small></InfoMsg>}

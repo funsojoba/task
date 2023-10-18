@@ -24,7 +24,7 @@ export const loginAction = createAsyncThunk(
         const token = response.data?.data.token
         localStorage.setItem('token', token)
 
-          setInterval(function () {
+          setTimeout(function () {
             window.location.href = "/dashboard";
         }, 1500);
 
